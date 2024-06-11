@@ -1,21 +1,12 @@
-const fs = require("fs");
-const csv = require("csv-parser");
-const filePath = require("path").resolve(__dirname, "imdbId.csv");
+import { imdbIds } from "./constants/imdbId";
 
-export const getTenRandomIMDBId = (): Promise<string[]> => {
-  let results: string[] = [];
-
-  return new Promise((resolve, reject) => {
-    fs.createReadStream(filePath)
-    .pipe(csv({ headers: false }))
-    .on("data", (data: any) => {
-      results.push(data[Object.keys(data)[0]]);
-    })
-    .on("end", () => {
-      results = results.sort(() => 0.5 - Math.random()).slice(0, 10);
-      resolve(results);
-    })
-    .on("error", reject)
-  })
-
+export const getTenRandomIMDBId = (): string[] => {
+  const results: string[] = []
+  for (let index = 0; index < 10; index++) {
+    const id = imdbIds[(Math.floor(Math.random() * imdbIds.length))]
+    results.push(id)
+  }
+  return results;
 };
+
+getTenRandomIMDBId()

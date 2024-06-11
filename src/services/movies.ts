@@ -7,7 +7,7 @@ dotenv.config();
 
 export const getMultiple = async () => {
   try {
-    const ids = await getTenRandomIMDBId();
+    const ids = getTenRandomIMDBId();
     const response = ids.map((id) =>
       axios.get(
         `http://www.omdbapi.com/?i=tt${id}&plot=full&apikey=${process.env.OMDB_API_KEY}`
