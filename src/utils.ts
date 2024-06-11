@@ -8,5 +8,3 @@ export const getTenRandomIMDBId = (): string[] => {
   }
   return results;
 };
-
-getTenRandomIMDBId()
